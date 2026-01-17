@@ -1,51 +1,507 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Samala Akash | Portfolio</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Akash | Portfolio</title>
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --bg-light: #020617;
+      --primary: #38bdf8;
+      --text-main: #e5e7eb;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+    }
+
+    /* ---------------- NAVBAR ---------------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      padding: 18px 8%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(15, 23, 42, 0.85);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-size: 22px;
+      color: var(--primary);
+    }
+
+    nav a {
+      margin-left: 24px;
+      text-decoration: none;
+      color: var(--text-main);
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
+
+    /* ---------------- HERO ---------------- */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      padding: 0 8%;
+      background:
+        linear-gradient(to right, rgba(2,6,23,0.9), rgba(2,6,23,0.6)),
+        url('/image.png') center/cover no-repeat;
+    }
+
+    .hero-content {
+      max-width: 650px;
+    }
+
+    .hero h2 {
+      font-size: 48px;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      color: var(--text-muted);
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+    section {
+      padding: 90px 8%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 32px;
+      margin-bottom: 25px;
+      text-align: center;
+      color: var(--primary);
+    }
+
+    section p {
+      text-align: center;
+      color: var(--text-muted);
+      max-width: 700px;
+      margin: auto;
+    }
+
+    /* ---------------- SKILLS ---------------- */
+/* ---------------- SKILL BARS ---------------- */
+
+.skills-container {
+  max-width: 700px;
+  margin: 40px auto 0;
+}
+
+.skill-bar {
+  margin-bottom: 22px;
+}
+
+.skill-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+  font-size: 14px;
+  color: var(--text-main);
+}
+
+.bar {
+  width: 100%;
+  height: 10px;
+  background: #020617;
+  border-radius: 20px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), #0ea5e9);
+  border-radius: 20px;
+  transition: width 0.6s ease;
+}
+
+
+    /* ---------------- PROJECTS ---------------- */
+.projects-grid {
+  margin-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  position: relative;
+  background: var(--bg-light);
+  padding: 25px;
+  border-radius: 16px;
+  transition: 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 0 30px rgba(56,189,248,0.2);
+}
+
+.project-card h3 {
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.project-desc {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  line-height: 1.6;
+}
+
+.project-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.project-skills span {
+  background: #020617;
+  border: 1px solid #1e293b;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 20px;
+  color: var(--text-main);
+}
+
+/* GitHub Button */
+.github-btn {
+  position: absolute;
+  top: 18px;
+  right: 18px;
+  text-decoration: none;
+  font-size: 13px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--primary);
+  color: #020617;
+  transition: 0.3s;
+}
+
+.github-btn:hover {
+  background: #0ea5e9;
+}
+
+    /* ---------------- EDUCATION ---------------- */
+    .edu {
+      margin-top: 20px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    /* ---------------- CONTACT ---------------- */
+    .contact-form {
+      background: var(--bg-light);
+      padding: 35px;
+      border-radius: 15px;
+      max-width: 500px;
+      margin: 40px auto 0;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      background: #020617;
+      border: 1px solid #1e293b;
+      color: white;
+      border-radius: 8px;
+      outline: none;
+    }
+
+    .contact-form button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 12px;
+      border: none;
+      background: var(--primary);
+      color: #020617;
+      font-size: 16px;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .contact-form button:hover {
+      background: #0ea5e9;
+    }
+
+    #status {
+      margin-top: 10px;
+      text-align: center;
+      font-size: 14px;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+    footer {
+      text-align: center;
+      padding: 25px;
+      background: #020617;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+  </style>
 </head>
+
 <body>
-  <!-- Hero Section -->
-  <header class="hero">
-    <h1>Samala Akash</h1>
-    <p class="subtitle">Computer Science Engineering Student | Aspiring Software Developer</p>
-    <p class="intro">
-      Skilled in Python, C++, Data Structures, Data Science, and Web Development.
-      Passionate about building real-world solutions using technology.
-    </p>
-    <div class="buttons">
-      <a href="#projects" class="btn">Projects</a>
-      <a href="#contact" class="btn outline">Contact</a>
-    </div>
-  </header>  <!-- About -->  <section class="section">
-    <h2>About Me</h2>
+
+<header>
+  <h1>Samala Akash</h1>
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#education">Education</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-content">
+    <h2>Hello, I'm Akash 👋</h2>
     <p>
-      I am a B.Tech Computer Science Engineering student with strong foundations in programming,
-      data structures, databases, and analytics. I have hands-on experience through internships
-      and projects in Data Science, Web Development, and Power BI.
+      A passionate Computer Science student specializing in AI, Data Science, and full-stack development.
     </p>
-  </section>  <!-- Skills -->  <section class="section dark">
-    <h2>Skills</h2>
-    <div class="grid">
-      <div class="card">Python, C++, Java</div>
-      <div class="card">DSA, OOP, DBMS</div>
-      <div class="card">Machine Learning, Data Science</div>
-      <div class="card">SQL, NoSQL, Power BI</div>
+  </div>
+</section>
+
+<section id="about">
+  <h2>About Me</h2>
+  <p>
+    I'm Akash, a dedicated Computer Science student with a strong passion for Artificial Intelligence, Data Science, and full-stack development. I love creating innovative solutions and continuously learning new technologies to enhance my skills.
+  </p>
+</section>
+
+<section id="skills">
+  <h2>Skills</h2>
+
+  <div class="skills-container">
+
+    <div class="skill-bar">
+      <div class="skill-header">
+        <span>Python</span>
+        <span>85%</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width:85%"></div>
+      </div>
     </div>
-  </section>  <!-- Projects -->  <section class="section" id="projects">
-    <h2>Projects</h2>
-    <div class="grid">
-      <div class="card">FeastHub – MERN Food Ordering Platform</div>
-      <div class="card">Logistics & Supply Chain Dashboard (Power BI)</div>
-      <div class="card">Performance Analysis & Prediction (Python ML)</div>
-      <div class="card">Smart Library Management System (C++)</div>
+
+    <div class="skill-bar">
+      <div class="skill-header">
+        <span>Java</span>
+        <span>75%</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width:75%"></div>
+      </div>
     </div>
-  </section>  <!-- Contact -->  <footer class="section dark" id="contact">
-    <h2>Contact</h2>
-    <p>Email: akashsamalajobs@gmail.com</p>
-    <p>Phone: +91 9849066167</p>
-    <p>LinkedIn: linkedin.com/in/samalaakash4</p>
-  </footer>
+
+    <div class="skill-bar">
+      <div class="skill-header">
+        <span>C++</span>
+        <span>70%</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width:70%"></div>
+      </div>
+    </div>
+
+    <div class="skill-bar">
+      <div class="skill-header">
+        <span>SQL</span>
+        <span>80%</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width:80%"></div>
+      </div>
+    </div>
+
+    <div class="skill-bar">
+      <div class="skill-header">
+        <span>Machine Learning</span>
+        <span>65%</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width:65%"></div>
+      </div>
+    </div>
+
+    <div class="skill-bar">
+      <div class="skill-header">
+        <span>Power BI</span>
+        <span>70%</span>
+      </div>
+      <div class="bar">
+        <div class="bar-fill" style="width:70%"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="projects">
+  <h2>Projects</h2>
+
+  <div class="projects-grid">
+
+    <!-- PROJECT 1 -->
+    <div class="project-card">
+      <a href="https://github.com/yourusername/feast-hub" target="_blank" class="github-btn">GitHub</a>
+      <h3>Feast Hub</h3>
+
+      <p class="project-desc">
+        <b>What it is:</b> A full-stack food ordering web application.
+      </p>
+
+      <p class="project-desc">
+        <b>How it helps:</b> Allows users to browse food items, place orders, and manage carts efficiently.
+      </p>
+
+      <div class="project-skills">
+        <span>MongoDB</span>
+        <span>Express</span>
+        <span>React</span>
+        <span>Node.js</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card">
+      <a href="https://github.com/yourusername/supply-chain-dashboard" target="_blank" class="github-btn">GitHub</a>
+      <h3>Supply Chain Dashboard</h3>
+
+      <p class="project-desc">
+        <b>What it is:</b> An interactive Power BI dashboard for logistics data.
+      </p>
+
+      <p class="project-desc">
+        <b>How it helps:</b> Helps businesses track shipments, delays, and performance metrics.
+      </p>
+
+      <div class="project-skills">
+        <span>Power BI</span>
+        <span>SQL</span>
+        <span>Data Visualization</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="project-card">
+      <a href="https://github.com/yourusername/prediction-system" target="_blank" class="github-btn">GitHub</a>
+      <h3>Prediction System</h3>
+
+      <p class="project-desc">
+        <b>What it is:</b> A machine learning-based prediction system.
+      </p>
+
+      <p class="project-desc">
+        <b>How it helps:</b> Predicts outcomes based on historical data to support decision-making.
+      </p>
+
+      <div class="project-skills">
+        <span>Python</span>
+        <span>Machine Learning</span>
+        <span>Pandas</span>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project-card">
+      <a href="https://github.com/yourusername/library-management" target="_blank" class="github-btn">GitHub</a>
+      <h3>Library Management System</h3>
+
+      <p class="project-desc">
+        <b>What it is:</b> A console-based library system built in C++.
+      </p>
+
+      <p class="project-desc">
+        <b>How it helps:</b> Manages books, users, and transactions efficiently using OOP concepts.
+      </p>
+
+      <div class="project-skills">
+        <span>C++</span>
+        <span>OOP</span>
+        <span>File Handling</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section id="education">
+  <h2>Education</h2>
+  <div class="edu">
+    <p><b>B.Tech CSE</b> – Parul Institute of Engineering (2022–2026)</p>
+    <p><b>Intermediate</b> – Saanvi Junior College (2020–2022)</p>
+    <p><b>SSC</b> – Universal High School (2014–2020)</p>
+  </div>
+</section>
+
+<section id="contact">
+  <h2>Contact Me</h2>
+  <div class="contact-form">
+    <input type="text" id="name" placeholder="Your Name">
+    <input type="email" id="email" placeholder="Your Email">
+    <textarea id="message" rows="5" placeholder="Your Message"></textarea>
+    <button onclick="sendMail()">Send Message</button>
+    <p id="status"></p>
+  </div>
+</section>
+
+<footer>
+  © 2026 Akash | All Rights Reserved
+</footer>
+
+<script>
+  emailjs.init("FcxhVsLJdCnsJKQaV");
+
+  function sendMail() {
+    const params = {
+      name: name.value,
+      email: email.value,
+      message: message.value
+    };
+
+    emailjs.send("service_g9phtli", "template_4uer9yr", params)
+      .then(() => status.innerText = "Message sent successfully!")
+      .catch(() => status.innerText = "Failed to send message!");
+  }
+</script>
+
 </body>
 </html>
