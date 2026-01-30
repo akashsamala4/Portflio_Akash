@@ -1,19 +1,18 @@
-
-# 📌 Styled Portfolio Website
+ 📌 Interactive Portfolio Website
 
 ## 📖 Project Description
 
-This project is a personal portfolio website created using **HTML and CSS**. The aim of this project is to design a visually appealing and responsive website that showcases personal details, projects, and contact information. It demonstrates core CSS concepts such as selectors, box model, positioning, hover effects, Flexbox, and responsive design.
+This project is a personal portfolio website built using **HTML, CSS, and JavaScript**. It showcases personal information, skills, and contact details in a visually appealing and responsive design. JavaScript is used to add interactivity such as form validation and dark mode toggle.
 
 ---
 
 ## 🎯 Objectives
 
-* Learn and apply CSS styling techniques
-* Understand layout design using Flexbox/Grid
-* Implement responsive design for different screen sizes
-* Create a clean and modern UI
-* Practice linking external CSS files
+* Build a structured website using HTML
+* Apply styling using CSS
+* Add interactivity using JavaScript
+* Create a responsive layout
+* Practice linking external CSS and JavaScript files
 
 ---
 
@@ -21,8 +20,10 @@ This project is a personal portfolio website created using **HTML and CSS**. The
 
 * HTML5
 * CSS3
+* JavaScript
 * Flexbox
 * Media Queries
+* DOM Manipulation
 
 ---
 
@@ -33,6 +34,7 @@ portfolio-project/
 │
 ├── index.html
 ├── style.css
+├── script.js
 ├── README.md
 └── images/
 ```
@@ -41,12 +43,15 @@ portfolio-project/
 
 ## ✨ Features
 
+* Semantic HTML layout
 * External CSS styling
-* Multiple CSS selectors
-* Hover effects on buttons and links
-* Responsive design for mobile devices
+* Responsive design
+* Hover effects
 * Image integration
-* Clean layout and color scheme
+* JavaScript form validation
+* Dark mode toggle
+* Interactive buttons
+* Dynamic content updates
 
 ---
 
@@ -61,7 +66,7 @@ portfolio-project/
 
 ## 📱 Responsive Design
 
-Media queries are used to ensure the website adapts to:
+The website adapts to:
 
 * Mobile devices
 * Tablets
@@ -75,30 +80,32 @@ Media queries are used to ensure the website adapts to:
 * Box Model
 * Margin & Padding
 * Colors & Backgrounds
-* Hover Effects
 * Flexbox Layout
 * Media Queries
 
 ---
 
-## 📸 Screenshots
+## ⚙️ JavaScript Features
 
-(Add screenshots of your project here)
-
-Example:
-
-```
-![Homepage](screenshots/home.png)
-```
+* DOM Manipulation
+* Event Handling
+* Form Validation
+* Dark Mode Toggle
+* Show/Hide Content
+* Reusable Functions
 
 ---
+
+## 📸 Screenshots
+
+
 
 ## 📌 Future Improvements
 
 * Add animations
-* Include more project sections
-* Improve mobile responsiveness
-* Add contact form functionality
+* Improve UI design
+* Add backend functionality
+* Enhance mobile responsiveness
 
 ---
 
