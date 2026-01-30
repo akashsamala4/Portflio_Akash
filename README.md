@@ -1,7 +1,3 @@
-Got it, Akash 👍
-Here is a **ready-to-use README.md file** for your **HTML + CSS Portfolio Project**. You can copy and paste this directly into your GitHub repository.
-
----
 
 # 📌 Styled Portfolio Website
 
